@@ -1,0 +1,23 @@
+{
+    "a2bizz_modulecreator": {
+        "column": {
+            "modulecreator_id": true,
+            "Title": true,
+            "namespace": true,
+            "module": true,
+            "content": true,
+            "creation_time": true,
+            "update_time": true,
+            "is_active": true
+        },
+        "index": {
+            "A2BIZZ_MODULECREATOR_MODULECREATOR_ID": true,
+            "A2BIZZ_MODULECREATOR_TITLE": true,
+            "A2BIZZ_MODULECREATOR_NAMESPACE": true,
+            "A2BIZZ_MODULECREATOR_MODULE": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

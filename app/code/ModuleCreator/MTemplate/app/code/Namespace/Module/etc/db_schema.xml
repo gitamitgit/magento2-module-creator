@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+	<table name="[namespace]_[module]" resource="default" engine="innodb" comment="[namespace]_[module] Table">
+		<column xsi:type="smallint" name="[module]_id" nullable="false" comment="entity id" identity="true" unsigned="false"/>
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="[module]_id"/>
+		</constraint>
+		<index referenceId="A2BIZZ_DESIGNERSOFTWARE_ID" indexType="btree">
+			<column name="[module]_id"/>
+		</index>
+		<column xsi:type="varchar" name="Title" nullable="true" comment="Title" length="255"/>
+		<index referenceId="A2BIZZ_DESIGNERSOFTWARE_TITLE" indexType="btree">
+			<column name="Title"/>
+		</index>
+		<column name="content" nullable="true" xsi:type="text" comment="content"/>
+		<column name="creation_time" nullable="false" xsi:type="timestamp" comment="creation_time" default="CURRENT_TIMESTAMP"/>
+		<column name="update_time" nullable="false" xsi:type="timestamp" comment="update_time" default="CURRENT_TIMESTAMP" on_update="true"/>
+		<column name="is_active" nullable="false" xsi:type="smallint" comment="is_active" default="1" identity="false"/>
+	</table>
+</schema>

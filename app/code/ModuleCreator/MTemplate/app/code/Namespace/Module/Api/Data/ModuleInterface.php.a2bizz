@@ -1,0 +1,98 @@
+<?php
+/**
+ * Copyright ©  All rights reserved.
+ * See COPYING.txt for license details.
+ */
+declare(strict_types=1);
+
+namespace <Namespace>\<Module>\Api\Data;
+
+interface <Module>Interface
+{
+
+    const ID = '<module>_id';
+    const TITLE = 'Title';
+    const CONTENT = 'content';
+    const CREATION_TIME = 'creation_time';
+    const UPDATE_TIME = 'update_time';
+    const IS_ACTIVE = 'is_active';
+
+    /**
+     * Get <module>_id
+     * @return string|null
+     */
+    public function get<Module>Id();
+
+    /**
+     * Set <module>_id
+     * @param string $<module>Id
+     * @return \<Namespace>\<Module>\<Module>\Api\Data\<Module>Interface
+     */
+    public function set<Module>Id($<module>Id);
+
+    /**
+     * Get Title
+     * @return string|null
+     */
+    public function getTitle();
+
+    /**
+     * Set Title
+     * @param string $title
+     * @return \<Namespace>\<Module>\<Module>\Api\Data\<Module>Interface
+     */
+    public function setTitle($title);
+
+    /**
+     * Get content
+     * @return string|null
+     */
+    public function getContent();
+
+    /**
+     * Set content
+     * @param string $content
+     * @return \<Namespace>\<Module>\<Module>\Api\Data\<Module>Interface
+     */
+    public function setContent($content);
+
+    /**
+     * Get creation_time
+     * @return string|null
+     */
+    public function getCreationTime();
+
+    /**
+     * Set creation_time
+     * @param string $creationTime
+     * @return \<Namespace>\<Module>\<Module>\Api\Data\<Module>Interface
+     */
+    public function setCreationTime($creationTime);
+
+    /**
+     * Get update_time
+     * @return string|null
+     */
+    public function getUpdateTime();
+
+    /**
+     * Set update_time
+     * @param string $updateTime
+     * @return \<Namespace>\<Module>\<Module>\Api\Data\<Module>Interface
+     */
+    public function setUpdateTime($updateTime);
+
+    /**
+     * Get is_active
+     * @return string|null
+     */
+    public function getIsActive();
+
+    /**
+     * Set is_active
+     * @param string $isActive
+     * @return \<Namespace>\<Module>\<Module>\Api\Data\<Module>Interface
+     */
+    public function setIsActive($isActive);
+}
+

@@ -1,0 +1,120 @@
+<?php
+/**
+ * Copyright ©  All rights reserved.
+ * See COPYING.txt for license details.
+ */
+declare(strict_types=1);
+
+namespace <Namespace>\<Module>\Model;
+
+use <Namespace>\<Module>\Api\Data\<Module>Interface;
+use Magento\Framework\Model\AbstractModel;
+
+class <Module> extends AbstractModel implements <Module>Interface
+{
+
+    /**
+     * @inheritDoc
+     */
+    public function _construct()
+    {
+        $this->_init(\<Namespace>\<Module>\Model\ResourceModel\<Module>::class);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function get<Module>Id()
+    {
+        return $this->getData(self::ID);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function set<Module>Id($<module>Id)
+    {
+        return $this->setData(self::ID, $<module>Id);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle()
+    {
+        return $this->getData(self::TITLE);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setTitle($title)
+    {
+        return $this->setData(self::TITLE, $title);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getContent()
+    {
+        return $this->getData(self::CONTENT);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setContent($content)
+    {
+        return $this->setData(self::CONTENT, $content);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getCreationTime()
+    {
+        return $this->getData(self::CREATION_TIME);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setCreationTime($creationTime)
+    {
+        return $this->setData(self::CREATION_TIME, $creationTime);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getUpdateTime()
+    {
+        return $this->getData(self::UPDATE_TIME);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setUpdateTime($updateTime)
+    {
+        return $this->setData(self::UPDATE_TIME, $updateTime);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getIsActive()
+    {
+        return $this->getData(self::IS_ACTIVE);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setIsActive($isActive)
+    {
+        return $this->setData(self::IS_ACTIVE, $isActive);
+    }
+}
+
