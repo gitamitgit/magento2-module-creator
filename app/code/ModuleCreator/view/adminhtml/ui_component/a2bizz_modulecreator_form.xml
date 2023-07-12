@@ -45,6 +45,9 @@
                 <item name="config" xsi:type="array">
                     <item name="source" xsi:type="string">page</item>
                     <item name="default" xsi:type="number">0</item>
+					<item name="imports" xsi:type="array">
+                    	<item name="disabled" xsi:type="string">${ $.provider}:data.edit</item>
+                	</item>
                 </item>
             </argument>
             <settings>

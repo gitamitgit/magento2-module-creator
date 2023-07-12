@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+	<acl>
+		<resources>
+			<resource id="Magento_Backend::admin">
+				<resource id="A2bizz_Base::Base" title="Base" sortOrder="10">
+					<resource id="A2bizz_Base::Base_save" title="Save Base" sortOrder="10"/>
+					<resource id="A2bizz_Base::Base_delete" title="Delete Base" sortOrder="20"/>
+					<resource id="A2bizz_Base::Base_update" title="Update Base" sortOrder="30"/>
+					<resource id="A2bizz_Base::Base_view" title="View Base" sortOrder="40"/>
+				</resource>
+			</resource>
+		</resources>
+	</acl>
+</config>

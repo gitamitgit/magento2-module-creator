@@ -13,6 +13,8 @@ class Save extends \Magento\Backend\App\Action
 {
 
     protected $dataPersistor;
+    protected $fullModuleList;
+    protected $_moduleManager;
     protected $helper;
 
     /**
@@ -23,10 +25,12 @@ class Save extends \Magento\Backend\App\Action
         \Magento\Backend\App\Action\Context $context,
         \Magento\Framework\App\Request\DataPersistorInterface $dataPersistor,
         \Magento\Framework\Module\FullModuleList $fullModuleList,
+        \Magento\Framework\Module\Manager $moduleManager,
         \A2bizz\ModuleCreator\Helper\Data $helper
     ) {
         $this->dataPersistor = $dataPersistor;
         $this->fullModuleList = $fullModuleList;
+        $this->_moduleManager = $moduleManager;
         $this->helper = $helper;
 
         parent::__construct($context);
@@ -52,8 +56,7 @@ class Save extends \Magento\Backend\App\Action
                 return $resultRedirect->setPath('*/*/');
             }
 
-            //this methods checks weather the module is already been created in Magento setup
-            //var_dump($this->isModuleAlreadyCreated($data));exit;
+            //this methods checks weather the module is already been created in Magento setup            
             if($this->isModuleAlreadyCreated($data)){
                 $this->messageManager->addErrorMessage(__('This Module Already exists.'));
                 if(!$id){                    
@@ -67,7 +70,13 @@ class Save extends \Magento\Backend\App\Action
                     $this->createNewModule($data);
                 } 
             }
-                        
+            //echo $data['namespace'].'_'.$data['module'];
+            //echo $this->_moduleManager->isEnabled($data['namespace'].'_'.$data['module']);exit;
+            if($this->_moduleManager->isEnabled($data['namespace'].'_'.$data['module'])):
+                $data['is_active']=1;
+            else:
+                $data['is_active']=0;
+            endif; 
             $model->setData($data);
         
             try {
@@ -112,10 +121,13 @@ class Save extends \Magento\Backend\App\Action
         //print_r($data);exit;
 
         $newModule=$data['namespace'].'_'.$data['module'];
-        $allModules = $this->fullModuleList->getAll();
+        $allModules = $this->fullModuleList->getAll($newModule);
+
+        //echo "<pre>";print_r($allModules);exit;
         
         //If Module is saved already
         if( isset($data['modulecreator_id'])):
+            /*
             $count=0;
             foreach ( $allModules as $module ):
                 if( $newModule==$module['name'] ):
@@ -125,14 +137,19 @@ class Save extends \Magento\Backend\App\Action
             if($count>0):
                 return true;
             endif;
+            */            
         else:
             foreach ( $allModules as $module ):
                 if( $newModule==$module['name'] ):
+                    //$this->messageManager->addErrorMessage(__('This Module Already exists.'));
+                    //return $resultRedirect->setPath('*/*/new');
                     return true;
                 endif;
             endforeach;
+            return false;
+            //$this->createNewModule($data);
         endif;
-        return false;
+
     }
 }
 

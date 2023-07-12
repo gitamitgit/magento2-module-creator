@@ -146,4 +146,3 @@ class ModuleCreatorRepository implements ModuleCreatorRepositoryInterface
         return $this->delete($this->get($modulecreatorId));
     }
 }
-
