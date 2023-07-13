@@ -22,10 +22,12 @@ class Delete extends AbstractHelper
         \Magento\Framework\App\Helper\Context $context,
         \Magento\Framework\Filesystem\DirectoryList $directoryList,
         \Magento\Framework\Filesystem\Driver\File $driverFile,
-        \A2bizz\ModuleCreator\Model\ModuleCreator $model   
+        \Magento\Framework\Setup\SchemaSetupInterface $schemaSetup,
+        \A2bizz\ModuleCreator\Model\ModuleCreator $model  
     ){
         $this->directoryList = $directoryList;
         $this->driverFile = $driverFile;
+        $this->schemaSetup = $schemaSetup;        
         $this->model = $model;
 
         parent::__construct($context);
@@ -41,10 +43,11 @@ class Delete extends AbstractHelper
     }
 
     public function deleteModule($id){
+        
         $model = $this->model->load($id);
         $namespace=$model->getNamespace();
         $module=$model->getModule();
-        
+
         //generate path for module, which you want to delete
         $pathApp  =  $this->directoryList->getPath('app'); // get Project Root/app/ Path 
         $namespacePath=$pathApp.'/code/'.$namespace.'/';
@@ -64,5 +67,20 @@ class Delete extends AbstractHelper
                 $this->driverFile->deleteDirectory($namespacePath);
             endif;
         endif;
+
+        //delete corresponding table generated for module
+        // Table geenrated will always have name in lowercase "namespace_module" Format
+        $this->deleteModuleTable(strtolower($namespace.'_'.$module));
+    }
+
+    public function deleteModuleTable($tableName){
+        $installer = $this->schemaSetup;
+        $installer->startSetup();
+        
+        if ($installer->tableExists($tableName)) {            
+            $installer->getConnection()->dropTable($installer->getTable($tableName));
+        }
+
+        $installer->endSetup();
     }
 }
