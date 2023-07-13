@@ -56,12 +56,12 @@ class Delete extends AbstractHelper
         if( $totalChildDirectories > 1 ):
             if( $this->driverFile->isExists($modulePath) ):
                 //remove dirctory recursively of the module
-                $this->driverFile->deleteDirectory($path);
+                $this->driverFile->deleteDirectory($modulePath);
             endif;
         else:
             if( $this->driverFile->isExists($namespacePath) ):
                 //remove dirctory recursively of the namespace with single module
-                $this->driverFile->deleteDirectory($path);
+                $this->driverFile->deleteDirectory($namespacePath);
             endif;
         endif;
     }

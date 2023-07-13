@@ -56,8 +56,13 @@ class Save extends \Magento\Backend\App\Action
                 return $resultRedirect->setPath('*/*/');
             }
 
+            //echo "<pre>";
+            //print_r($model->getData());
+            //exit;
+
             //this methods checks weather the module is already been created in Magento setup            
             if($this->isModuleAlreadyCreated($data)){
+                //echo "IF";exit;
                 $this->messageManager->addErrorMessage(__('This Module Already exists.'));
                 if(!$id){                    
                     return $resultRedirect->setPath('*/*/new');
@@ -65,7 +70,10 @@ class Save extends \Magento\Backend\App\Action
                     return $resultRedirect->setPath('*/*/edit', ['modulecreator_id' => $this->getRequest()->getParam('modulecreator_id')]);
                 }                
             } else {
-                if (!$model->getId() && $id) {
+                //echo "Else";
+                //var_dump($id);
+                //exit;
+                if (!$model->getId()) {
                     // this will create a new module inside app/code/ with namespace_module name 
                     $this->createNewModule($data);
                 } 

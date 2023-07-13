@@ -98,24 +98,28 @@
 			<settings>
 				<filter>text</filter>
 				<label translate="true">Namespace</label>
+				<!--
 				<editor>
 					<editorType>text</editorType>
 					<validation>
 						<rule name="required-entry" xsi:type="boolean">false</rule>
 					</validation>
 				</editor>
+				-->
 			</settings>
 		</column>
 		<column name="module">
 			<settings>
 				<filter>text</filter>
 				<label translate="true">Module</label>
+				<!--
 				<editor>
 					<editorType>text</editorType>
 					<validation>
 						<rule name="required-entry" xsi:type="boolean">false</rule>
 					</validation>
 				</editor>
+				-->
 			</settings>
 		</column>
 		<column name="content">
