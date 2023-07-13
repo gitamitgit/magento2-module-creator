@@ -69,14 +69,7 @@ class Save extends \Magento\Backend\App\Action
                     // this will create a new module inside app/code/ with namespace_module name 
                     $this->createNewModule($data);
                 } 
-            }
-            //echo $data['namespace'].'_'.$data['module'];
-            //echo $this->_moduleManager->isEnabled($data['namespace'].'_'.$data['module']);exit;
-            if($this->_moduleManager->isEnabled($data['namespace'].'_'.$data['module'])):
-                $data['is_active']=1;
-            else:
-                $data['is_active']=0;
-            endif; 
+            }            
             $model->setData($data);
         
             try {

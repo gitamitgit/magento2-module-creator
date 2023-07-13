@@ -15,5 +15,54 @@ use Magento\Framework\Filesystem\DirectoryList;
  */
 class Delete extends AbstractHelper
 {
+    private $directoryList;
+    private $driverFile;
 
+    public function __construct(
+        \Magento\Framework\App\Helper\Context $context,
+        \Magento\Framework\Filesystem\DirectoryList $directoryList,
+        \Magento\Framework\Filesystem\Driver\File $driverFile,
+        \A2bizz\ModuleCreator\Model\ModuleCreator $model   
+    ){
+        $this->directoryList = $directoryList;
+        $this->driverFile = $driverFile;
+        $this->model = $model;
+
+        parent::__construct($context);
+    }
+
+    public function getModuleNameById($id){
+        $model = $this->model->load($id);
+        $moduleName=$model->getNamespace().'_'.$model->getModule();
+        return $moduleName;
+        //echo "<pre>";
+        //print_r($moduleName);
+        //exit;
+    }
+
+    public function deleteModule($id){
+        $model = $this->model->load($id);
+        $namespace=$model->getNamespace();
+        $module=$model->getModule();
+        
+        //generate path for module, which you want to delete
+        $pathApp  =  $this->directoryList->getPath('app'); // get Project Root/app/ Path 
+        $namespacePath=$pathApp.'/code/'.$namespace.'/';
+        $modulePath=$pathApp.'/code/'.$namespace.'/'.$module.'/';
+        
+        //count number of child directories in a namespace, 
+        //so that if there is only single module then it should have to remove whole namespace directlory with module directory
+        $totalChildDirectories = count( glob($namespacePath.'*', GLOB_ONLYDIR) );
+        if( $totalChildDirectories > 1 ):
+            if( $this->driverFile->isExists($modulePath) ):
+                //remove dirctory recursively of the module
+                $this->driverFile->deleteDirectory($path);
+            endif;
+        else:
+            if( $this->driverFile->isExists($namespacePath) ):
+                //remove dirctory recursively of the namespace with single module
+                $this->driverFile->deleteDirectory($path);
+            endif;
+        endif;
+    }
 }

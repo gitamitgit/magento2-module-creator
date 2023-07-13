@@ -44,7 +44,6 @@ class Index extends \Magento\Backend\App\Action
         //update module status of those modules created using module creator, 
         //if any module is enabled/ disabled in project
         $this->updateModulesStatus();
-        //exit;
 
         $resultPage = $this->resultPageFactory->create();
         $resultPage->getConfig()->getTitle()->prepend(__("ModuleCreator"));
