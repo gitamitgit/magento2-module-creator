@@ -9,12 +9,8 @@ the module generated will appears, or you can find your module in <strong>app/co
 To make this newly generated module, you just only have to run upgrade command to configure it with magento 2 project.
 <strong>You like the work the developer has done and it saved you a lot o time and money, consider <a href="https://www.paypal.me/amitgame2002/10">donating</a>. Any amount is welcomed. Just change 10 from the previous URL.</strong>
 
-## Requirements without docker 
+## Requirements
 PHP version 8.0.0 or higher. Some PHP extensions may be needed. See composer.json for more details.
-
-## Requirements with docker
- - docker-compose
- - gnu make (not mandatory but it's easier to install)
 
 ## Supported platforms
  - Magento 2.4.6+ 
