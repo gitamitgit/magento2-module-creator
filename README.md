@@ -1,8 +1,8 @@
-# A2bizz AAMC
+# A2bizz AMC
 A2bizz Advanced Module Creator
 
 ## Description  
-A2bizz Advanced module creator (AAMC) is a Magento2 Extension to create custom modules in quick manner with basic requirments of a module.
+A2bizz Advanced module creator (AMC) is a Magento2 Extension to create custom modules in quick manner with basic requirments of a module.
 Developers can make changes in a generated module as per requirement. 
 The benifit of this magento2 module creater is that you can create modules directly to the <strong>app/code</strong> section of a project, so <strong>no need to download or copy paste generated module</strong>.
 the module generated will appears, or you can find your module in <strong>app/code/{namespace}/{module} folder, directly</strong>.
@@ -45,7 +45,7 @@ PHP version 8.0.0 or higher. Some PHP extensions may be needed. See composer.jso
 ## Coding Standards  
 The generated extensions follow the PSR1, PSR2, PSR12 coding standards.
 
-## Contributing to the AAMC    
+## Contributing to the A2bizz AMC    
  - If you find a bug, report it <a href="https://github.com/gitamitgit/magento2-module-creator/issues">here</a>  
  - you have a cool idea for improving it but you don't want to implement it, post it <a href="https://github.com/gitamitgit/magento2-module-creator/issues">here</a>. There are no guarantees that it will get implemeted though.  
  - you have a cool idea for improving it and you can implement it, feel free to make a PR. But before doing so, make sure that the new code you create it is covered with unit tests and the existing unit tests still pass.  
