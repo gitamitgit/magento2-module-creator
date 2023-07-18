@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="[Namespace]_[Module]::[namespace]_[module]" title="[Module]" module="[Namespace]_[Module]" sortOrder="9999" resource="Magento_Backend::content" parent="[Namespace]::[PModule]_top_level" action="[namespace]_[module]/[module]/index"/>
+	</menu>
+</config>

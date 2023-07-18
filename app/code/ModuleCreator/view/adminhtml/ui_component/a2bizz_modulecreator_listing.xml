@@ -58,7 +58,7 @@
 		<column name="modulecreator_id">
 			<settings>
 				<filter>text</filter>
-				<label translate="true">modulecreator_id</label>
+				<label translate="true">Id</label>
 			</settings>
 		</column>
 		<settings>
@@ -125,7 +125,7 @@
 		<column name="content">
 			<settings>
 				<filter>text</filter>
-				<label translate="true">content</label>
+				<label translate="true">Content</label>
 				<editor>
 					<editorType>text</editorType>
 					<validation>
@@ -134,22 +134,26 @@
 				</editor>
 			</settings>
 		</column>
-		<column name="creation_time">
+		<column name="creation_time" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date">
 			<settings>
-				<filter>text</filter>
-				<label translate="true">creation_time</label>
+				<filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Created</label>
 			</settings>
 		</column>
-		<column name="update_time">
+		<column name="update_time" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date">
 			<settings>
-				<filter>text</filter>
-				<label translate="true">update_time</label>
+				<filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Modified</label>
 			</settings>
 		</column>
-		<column name="is_active">
+		<column name="is_active" component="Magento_Ui/js/grid/columns/select">
 			<settings>
-				<filter>text</filter>
-				<label translate="true">is_active</label>
+				<options class="A2bizz\ModuleCreator\Model\Source\IsActive"/>
+				<filter>select</filter>
+				<dataType>select</dataType>
+				<label translate="true">Is Active</label>
 			</settings>
 		</column>
 		<actionsColumn name="actions" class="A2bizz\ModuleCreator\Ui\Component\Listing\Column\ModuleCreatorActions">

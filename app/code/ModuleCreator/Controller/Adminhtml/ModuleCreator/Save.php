@@ -48,6 +48,12 @@ class Save extends \Magento\Backend\App\Action
         $data = $this->getRequest()->getPostValue();
         if ($data) {
             
+            //check if the module's namespace already created any module
+            $parentModule=$this->helper->checkParentStatus($data);
+            if($parentModule==NULL):
+                $data['is_parent']=1;
+            endif;
+
             $id = $this->getRequest()->getParam('modulecreator_id');
         
             $model = $this->_objectManager->create(\A2bizz\ModuleCreator\Model\ModuleCreator::class)->load($id);
@@ -56,23 +62,15 @@ class Save extends \Magento\Backend\App\Action
                 return $resultRedirect->setPath('*/*/');
             }
 
-            //echo "<pre>";
-            //print_r($model->getData());
-            //exit;
-
-            //this methods checks weather the module is already been created in Magento setup            
+            //this method checks weather the custom module is already been created/ present in Magento setup            
             if($this->isModuleAlreadyCreated($data)){
-                //echo "IF";exit;
                 $this->messageManager->addErrorMessage(__('This Module Already exists.'));
                 if(!$id){                    
                     return $resultRedirect->setPath('*/*/new');
                 } else {
                     return $resultRedirect->setPath('*/*/edit', ['modulecreator_id' => $this->getRequest()->getParam('modulecreator_id')]);
                 }                
-            } else {
-                //echo "Else";
-                //var_dump($id);
-                //exit;
+            } else {                
                 if (!$model->getId()) {
                     // this will create a new module inside app/code/ with namespace_module name 
                     $this->createNewModule($data);
@@ -115,8 +113,7 @@ class Save extends \Magento\Backend\App\Action
      * isModuleAlreadyCreated method
      *
      * @return true if module is already avaiable in magento setup
-     */
-    
+     */    
     public function isModuleAlreadyCreated($data){
 
         //print_r($data);exit;

@@ -13,6 +13,9 @@ use Magento\Framework\Model\AbstractModel;
 class ModuleCreator extends AbstractModel implements ModuleCreatorInterface
 {
 
+    const STATUS_ENABLED = 1;
+    const STATUS_DISABLED = 0;
+
     /**
      * @inheritDoc
      */
@@ -147,6 +150,16 @@ class ModuleCreator extends AbstractModel implements ModuleCreatorInterface
     public function setIsActive($isActive)
     {
         return $this->setData(self::IS_ACTIVE, $isActive);
+    }
+
+    /**
+     * Prepare statuses, available event module_creator_get_available_statuses to customize statuses.
+     *
+     * @return array
+     */
+    public function getAvailableStatuses()
+    {
+        return [self::STATUS_ENABLED => __('Enabled'), self::STATUS_DISABLED => __('Disabled')];
     }
 }
 

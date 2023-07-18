@@ -16,4 +16,13 @@
 			</argument>
 		</arguments>
 	</type>
+
+	<!-- 
+	Decorates presence of Is Active Enable and Disable in Colorful manner
+	-->
+	<!--<type name="A2bizz\ModuleCreator\Model\Source\IsActive">
+        <plugin name="module_creator_option_array_decorator" type="A2bizz\ModuleCreator\Plugin\OptionArrayDecorator" sortOrder="10" />
+    </type>
+	-->
+
 </config>
