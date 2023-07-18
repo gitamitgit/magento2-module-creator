@@ -50,4 +50,5 @@ The generated extensions follow the PSR1, PSR2, PSR12 coding standards.
  - you have a cool idea for improving it but you don't want to implement it, post it <a href="https://github.com/gitamitgit/magento2-module-creator/issues">here</a>. There are no guarantees that it will get implemeted though.  
  - you have a cool idea for improving it and you can implement it, feel free to make a PR. But before doing so, make sure that the new code you create it is covered with unit tests and the existing unit tests still pass.  
 
-  
+## Donations
+If you really like this and get the hang of it and it saves you a lot of development time, consider <a href="https://www.paypal.me/amitgame2002/10">a small (or large - I won't mind) donation via PayPal</a> 
