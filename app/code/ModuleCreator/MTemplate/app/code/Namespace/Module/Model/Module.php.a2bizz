@@ -12,6 +12,9 @@ use Magento\Framework\Model\AbstractModel;
 
 class <Module> extends AbstractModel implements <Module>Interface
 {
+	
+	const STATUS_ENABLED = 1;
+    const STATUS_DISABLED = 0;
 
     /**
      * @inheritDoc
@@ -19,6 +22,16 @@ class <Module> extends AbstractModel implements <Module>Interface
     public function _construct()
     {
         $this->_init(\<Namespace>\<Module>\Model\ResourceModel\<Module>::class);
+    }
+    
+    public function __construct(
+        \Magento\Framework\Model\Context $context,
+        \Magento\Framework\Registry $registry,
+        \<Namespace>\<Module>\Model\ImageUploader $imageUploader
+    ){
+        $this->imageUploader = $imageUploader;
+        
+        parent::__construct($context,$registry);
     }
 
     /**
@@ -115,6 +128,53 @@ class <Module> extends AbstractModel implements <Module>Interface
     public function setIsActive($isActive)
     {
         return $this->setData(self::IS_ACTIVE, $isActive);
+    }
+    
+    /**
+     * Prepare statuses, available event module_creator_get_available_statuses to customize statuses.
+     *
+     * @return array
+     */
+    public function getAvailableStatuses()
+    {
+        return [self::STATUS_ENABLED => __('Enabled'), self::STATUS_DISABLED => __('Disabled')];
+    }
+    
+    //Before saving data we must save images 
+    //Here all process is done for 
+    public function beforeSave(){
+        parent::beforeSave();
+        
+        $data = $this->getData();
+        
+        //When Gallery image is uploaded        
+        if( isset($data['image'][0]['name']) && $data['image'][0]['previewType']=='image' ):
+            $baseTmpPath = $this->getBaseTmpPath($data);
+            $this->imageUploader->setBaseTmpPath($baseTmpPath);
+            
+            //Uplaod image from tmp directory to real directory
+            $imageName = $this->imageUploader->moveFileFromTmp($data['image'][0]['name'], true);
+            $data['image'] = '/media/'.$imageName;
+        else:
+            if(!isset($data['image'])):
+                $data['image']='';
+            else:
+                unset($data['image']);
+            endif;            
+        endif;
+        
+        $this->setData($data);
+
+        return $this;
+    }
+
+    // get base image path when getting image from gallery 
+    // for upload temp path we have set it statically in Upload Controller
+    public function getBaseTmpPath($data){        
+        $baseTmpPath = dirname($data['image'][0]['url']);
+        $new = explode('media',$baseTmpPath);
+
+        return $new[1];
     }
 }
 

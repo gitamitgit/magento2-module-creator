@@ -62,6 +62,18 @@ class DataProvider extends AbstractDataProvider
         }
         $items = $this->collection->getItems();
         foreach ($items as $model) {
+			
+			//-- If Image Uploader is set then it will display image to Form --
+			$image = $model->getImage();
+			if (isset($image)) {
+                $image = [];
+                $imageArray = explode('/',$model->getImage());
+                $image[0]['name'] = $imageArray[count($imageArray)-1];
+                $image[0]['url'] = $model->getImage();
+            }
+            $model->setImage($image);
+            // <--
+            
             $this->loadedData[$model->getId()] = $model->getData();
         }
         $data = $this->dataPersistor->get('<namespace>_<module>');

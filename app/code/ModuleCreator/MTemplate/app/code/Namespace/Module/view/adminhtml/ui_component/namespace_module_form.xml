@@ -43,7 +43,7 @@
 		<field name="is_active" sortOrder="10" formElement="checkbox">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="source" xsi:type="string">page</item>
+                    <item name="source" xsi:type="string">[Module]</item>
                     <item name="default" xsi:type="number">1</item>
                 </item>
             </argument>
@@ -78,7 +78,13 @@
 					<rule name="required-entry" xsi:type="boolean">false</rule>
 				</validation>
 			</settings>
-		</field >
+		</field>		
+	</fieldset>
+	<fieldset name="content" sortOrder="10">
+        <settings>
+            <collapsible>true</collapsible>
+            <label translate="true">Content</label>
+        </settings>
 		<!--
 		<field name="content" formElement="textarea" sortOrder="30">
 			<argument name="data" xsi:type="array">
@@ -95,34 +101,11 @@
 				</validation>
 			</settings>
 		</field>
-		-->
-	</fieldset>
-	<fieldset name="content" sortOrder="10">
-        <settings>
-            <collapsible>true</collapsible>
-            <label translate="true">Content</label>
-        </settings>
-		<!--<field name="content" formElement="textarea" sortOrder="30">
-			<argument name="data" xsi:type="array">
-				<item name="config" xsi:type="array">
-					<item name="source" xsi:type="string">[Module]</item>
-				</item>
-			</argument>
-			<settings>
-				<dataType>text</dataType>
-				<label translate="true">Content</label>
-				<dataScope>content</dataScope>
-				<validation>
-					<rule name="required-entry" xsi:type="boolean">false</rule>
-				</validation>
-			</settings>
-		</field>
-		-->
-
+		-->		
         <field name="content" template="ui/form/field" formElement="wysiwyg">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="source" xsi:type="string">page</item>
+                    <item name="source" xsi:type="string">[Module]</item>
                 </item>
             </argument>
             <settings>
@@ -140,7 +123,41 @@
                     </settings>
                 </wysiwyg>
             </formElements>
-        </field>
-		
+        </field>		
     </fieldset>
+    <fieldset name="image_upload" sortOrder="20">
+		<settings>
+            <collapsible>true</collapsible>
+            <label translate="true">Image Upload</label>
+        </settings>
+		<field name="image" sortOrder="40" formElement="imageUploader">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">[Module]</item>
+                </item>
+            </argument>
+            <settings>
+                <elementTmpl>ui/form/element/uploader/image</elementTmpl>
+                <dataType>string</dataType>
+                <label translate="true">[Module] Image</label>
+                <visible>true</visible>
+                <required>false</required>
+            </settings>
+            <formElements>
+                <imageUploader>
+                    <settings>
+                        <required>false</required>
+                        <uploaderConfig>
+                            <param xsi:type="url" name="url" path="[namespace]_[module]/image/upload"/>
+                        </uploaderConfig>
+                        <previewTmpl>[Namespace]_[Module]/image-preview</previewTmpl>
+                        <openDialogTitle>Media Gallery</openDialogTitle>
+                        <initialMediaGalleryOpenSubpath>[namespace]/[module]</initialMediaGalleryOpenSubpath>
+                        <allowedExtensions>jpg jpeg gif png</allowedExtensions>
+                        <maxFileSize>4194304</maxFileSize>
+                    </settings>
+                </imageUploader>
+            </formElements>
+        </field>
+	</fieldset>
 </form>
