@@ -1,0 +1,60 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+namespace <Namespace>\<Module>\Ui\Component\Listing\Column;
+
+/**
+ * Class Image
+ *
+ * @api
+ * @since 100.0.2
+ */
+class Image extends \Magento\Ui\Component\Listing\Columns\Column
+{    
+    /**
+     * @var \Magento\Framework\UrlInterface
+     */
+    private $urlBuilder;
+
+    /**
+     * @param \Magento\Framework\View\Element\UiComponent\ContextInterface $context
+     * @param \Magento\Framework\View\Element\UiComponentFactory $uiComponentFactory
+     * @param \Magento\Framework\UrlInterface $urlBuilder
+     * @param array $components
+     * @param array $data
+     */
+    public function __construct(
+        \Magento\Framework\View\Element\UiComponent\ContextInterface $context,
+        \Magento\Framework\View\Element\UiComponentFactory $uiComponentFactory,
+        \Magento\Framework\UrlInterface $urlBuilder,
+        array $components = [],
+        array $data = []
+    ) {
+        $this->urlBuilder = $urlBuilder;
+        parent::__construct($context, $uiComponentFactory, $components, $data);            
+    }
+
+    /**
+     * Prepare Data Source
+     *
+     * @param array $dataSource
+     * @return array
+     */
+    public function prepareDataSource(array $dataSource)
+    {
+        if (isset($dataSource['data']['items'])) {
+            $fieldName = $this->getData('name');
+            foreach ($dataSource['data']['items'] as & $item) {
+                $imageUrl=$this->urlBuilder->getBaseUrl().$item['image'];
+
+                $item[$fieldName . '_src'] = $imageUrl;
+                $item[$fieldName . '_alt'] = $item['Title'];                
+                $item[$fieldName . '_orig_src'] = $imageUrl;                
+            }
+        }
+
+        return $dataSource;
+    }
+}

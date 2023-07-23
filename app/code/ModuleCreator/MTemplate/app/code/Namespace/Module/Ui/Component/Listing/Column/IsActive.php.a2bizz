@@ -1,0 +1,47 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+namespace <Namespace>\<Module>\Ui\Component\Listing\Column;
+
+use Magento\Framework\Data\OptionSourceInterface;
+
+/**
+ * Class IsActive
+ */
+class IsActive implements OptionSourceInterface
+{
+    /**
+     * @var \<Namespace>\<Module>\Model\<Module>
+     */
+    protected $<module>;
+
+    /**
+     * Constructor
+     *
+     * @param \<Namespace>\<Module>\Model\<Module> $<module>
+     */
+    public function __construct(\<Namespace>\<Module>\Model\<Module> $<module>)
+    {
+        $this-><module> = $<module>;
+    }
+
+    /**
+     * Get options
+     *
+     * @return array
+     */
+    public function toOptionArray()
+    {
+        $availableOptions = $this-><module>->getAvailableStatuses();
+        $options = [];
+        foreach ($availableOptions as $key => $value) {
+            $options[] = [
+                'label' => $value,
+                'value' => $key,
+            ];
+        }
+        return $options;
+    }
+}

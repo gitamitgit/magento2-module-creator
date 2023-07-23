@@ -233,6 +233,7 @@ class Data extends AbstractHelper
                         $content = $this->replaceXml($parentModule,$data,$content);
                         break;
                     case '.php':
+                    case '.html':    
                     case '.phtml':
                     case '.json':
                     case '.txt':
