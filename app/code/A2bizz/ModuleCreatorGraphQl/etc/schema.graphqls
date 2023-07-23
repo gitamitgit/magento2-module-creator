@@ -1,0 +1,36 @@
+# Copyright © A2bizz, Inc. All rights reserved.
+# See COPYING.txt for license details.
+
+type Query {
+    moduleCreator (
+        id: Int @doc(description: "The ID of the Custom Module Created.")
+    ):  moduleCreator @resolver(class: "A2bizz\\ModuleCreatorGraphQl\\Model\\Resolver\\ModuleCreator") @doc(description: "Return details about a ModuleCreator.")
+}
+
+type moduleCreator @doc(description: "Contains details about a module") {
+    namespace: String @doc(description: "The namespace ")
+    module: String @doc(description: "The Module.")
+    content: String @doc(description: "The Content.")
+    creation_time: String @doc(description: "Date created.")
+    update_time: String @doc(description: "Date updated.")
+    is_active: String @doc(description: "status of module.")
+}
+
+"""
+Comment-START
+===========
+QueryFormat
+===========
+query moduleCreator($id:Int!){
+    moduleCreator(id:$id){
+        namespace
+        module
+        content
+        update_time
+        creation_time
+        __typename
+    }
+    __typename
+}
+Comment-END
+"""
